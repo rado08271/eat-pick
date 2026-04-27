@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <script>
+        window['ai_edge_gallery_get_result'] = async (data) => {
+            try {
+                const { action, restaurant } = JSON.parse(data);
+                
+                // Construct the result object required by the Gallery App
+                return JSON.stringify({
+                    result: `I'm opening the ${action} page for ${restaurant}.`,
+                    webview: {
+                        // Pass data to the UI via URL parameters
+                        url: `../assets/webview.html?res=${encodeURIComponent(restaurant)}&type=${action}`,
+                        aspectRatio: 1.2
+                    }
+                });
+            } catch (e) {
+                return JSON.stringify({ error: e.message });
+            }
+        };
+    </script>
+</body>
+</html>

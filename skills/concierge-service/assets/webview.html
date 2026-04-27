@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family: sans-serif; padding: 20px; background: #f0f0f0;">
+    <h3 id="title">Loading...</h3>
+    <p id="content"></p>
+    <button onclick="window.close()" style="padding: 10px; border-radius: 5px;">Close</button>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const restaurant = params.get('res');
+        const type = params.get('type');
+
+        document.getElementById('title').innerText = restaurant;
+        document.getElementById('content').innerText = type === 'menu' 
+            ? "Fetching today's specials..." 
+            : "Connecting to reservation system...";
+    </script>
+</body>
+</html>
